@@ -1,0 +1,39 @@
+DEFINE ANSI escape prefix
+DEFINE ANSI reset code
+
+DEFINE foreground color codes
+DEFINE background color codes
+DEFINE style codes
+
+
+FUNCTION design(text, fg, bg, styles, reset)
+    INITIALIZE empty list of codes
+
+    IF fg is valid
+        ADD foreground code to codes
+    END IF
+
+    IF bg is valid
+        ADD background code to codes
+    END IF
+
+    IF styles exist
+        FOR each style
+            IF style is valid
+                ADD style code to codes
+            END IF
+        END FOR
+    END IF
+
+    IF codes list is empty
+        RETURN text as string
+    END IF
+
+    BUILD ANSI start sequence from codes
+
+    IF reset is true
+        APPEND reset sequence
+    END IF
+
+    RETURN formatted text
+END FUNCTION

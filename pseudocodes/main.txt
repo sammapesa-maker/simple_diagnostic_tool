@@ -1,0 +1,106 @@
+CLASS DiagnosticSession
+
+    METHOD initialize
+        CREATE reasoning engine
+        SET display width to 60
+    END METHOD
+
+
+    METHOD convert_to_snake_case(text)
+        CONVERT text to lowercase
+        TRIM whitespace
+        REPLACE spaces with underscores
+        RETURN result
+    END METHOD
+
+
+    METHOD convert_to_readable(text)
+        REPLACE underscores with spaces
+        CAPITALIZE each word
+        RETURN result
+    END METHOD
+
+
+    METHOD collect_symptoms
+        DISPLAY list of available symptoms (human-readable)
+
+        INITIALIZE empty symptom_list
+
+        LOOP
+            PROMPT user for input
+            IF input is "q"
+                EXIT loop
+            END IF
+
+            CONVERT input to snake_case
+
+            IF symptom not in knowledge base
+                DISPLAY "Invalid symptom"
+                CONTINUE loop
+            END IF
+
+            IF symptom not already in symptom_list
+                ADD symptom to symptom_list
+            END IF
+        END LOOP
+
+        RETURN symptom_list
+    END METHOD
+
+
+    METHOD present_results(results)
+        IF results is empty
+            DISPLAY "No matching diseases found"
+            RETURN
+        END IF
+
+        DISPLAY diagnostic results header
+
+        FOR each result in top 5 results
+            DISPLAY disease name (readable)
+            DISPLAY support score
+            DISPLAY supporting symptoms (readable)
+        END FOR
+
+        IF more than one disease found
+            DISPLAY warning about multiple possibilities
+        ELSE
+            DISPLAY single disease identified
+        END IF
+    END METHOD
+
+
+    METHOD start_session
+        DISPLAY application heading
+
+        SET patient_number to 1
+
+        LOOP
+            DISPLAY patient heading
+
+            symptoms ← collect_symptoms()
+
+            IF symptoms is empty
+                DISPLAY "Skipping patient"
+            ELSE
+                results ← engine.infer_diseases(symptoms)
+                present_results(results)
+            END IF
+
+            ASK user if another patient is needed
+            IF answer is not "y"
+                DISPLAY "Session ended"
+                EXIT loop
+            END IF
+
+            INCREMENT patient_number
+        END LOOP
+    END METHOD
+
+END CLASS
+
+
+MAIN
+    CREATE DiagnosticSession
+    START session
+END MAIN

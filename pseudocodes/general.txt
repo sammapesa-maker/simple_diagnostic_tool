@@ -1,0 +1,7 @@
+START program
+    DISPLAY UI
+    COLLECT symptoms from user
+    APPLY forward-chaining inference
+    SCORE diseases
+    DISPLAY ranked diagnostic results
+END program

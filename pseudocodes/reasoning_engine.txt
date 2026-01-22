@@ -1,0 +1,47 @@
+CLASS ReasoningEngine
+
+    METHOD convert_to_snake_case(text)
+        CONVERT text to lowercase
+        TRIM whitespace
+        REPLACE spaces with underscores
+        RETURN result
+    END METHOD
+
+
+    METHOD infer_diseases(reported_symptoms)
+        INITIALIZE disease_scores as empty map
+        INITIALIZE disease_support as empty map
+
+        FOR each symptom in reported_symptoms
+            findings ← lookup findings for symptom
+
+            FOR each finding in findings
+                conditions ← lookup conditions for finding
+
+                FOR each condition in conditions
+                    diseases ← lookup diseases for condition
+
+                    FOR each disease in diseases
+                        INCREMENT disease_scores[disease]
+                        ADD symptom to disease_support[disease]
+                    END FOR
+                END FOR
+            END FOR
+        END FOR
+
+        INITIALIZE results list
+
+        FOR each disease in disease_scores
+            CREATE result record:
+                disease name
+                score
+                supporting symptoms
+            ADD record to results
+        END FOR
+
+        SORT results by score in descending order
+
+        RETURN results
+    END METHOD
+
+END CLASS

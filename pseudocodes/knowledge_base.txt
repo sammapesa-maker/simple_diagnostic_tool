@@ -1,0 +1,20 @@
+DEFINE symptoms as list of symptom identifiers
+
+DEFINE findings as map:
+    symptom → list of findings
+
+DEFINE conditions as map:
+    finding → list of conditions
+
+DEFINE diseases as map:
+    condition → list of diseases
+
+
+CONCEPTUAL FLOW REPRESENTED
+Symptom
+   ↓
+Finding
+   ↓
+Condition
+   ↓
+Disease
