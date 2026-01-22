@@ -1,6 +1,4 @@
----
-
-# Diagnostic Tool (Forward-Chaining Expert System)
+# Simple Diagnostic Tool (Forward-Chaining Expert System)
 
 ## Overview
 
@@ -15,7 +13,6 @@ It is designed for **educational purposes**, demonstrating:
 * Forward chaining
 * Separation of concerns (UI, logic, knowledge)
 
----
 
 ## Project Structure
 
