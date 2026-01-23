@@ -6,7 +6,7 @@ from ansi import design
 
 class DiagnosticSession:
     """
-    Forward-Chaining Diagnostic Session
+    simple Forward-Chaining Diagnostic Session
     Supports multiple patients in a single session.
     Converts user input to snake_case.
     Displays human-readable results.
@@ -71,7 +71,7 @@ class DiagnosticSession:
 
     def start(self):
         heading = design(
-            "FOWARD-CHAINING DIAGNOSTIC ASSISTANT".center(self._width),
+            "SIMPLE FOWARD-CHAINING DIAGNOSTIC ASSISTANT".center(self._width),
             fg="cyan",
             styles=["bold"]
         )
@@ -99,7 +99,7 @@ class DiagnosticSession:
             print("-" * self._width)
             more = input(design("Do you want to diagnose another patient? (y/n): ", fg="cyan")).strip().lower()
             if more != "y":
-                print(design("Session ended.", fg="red"))
+                print(design("Session ended.\n", fg="red"))
                 print("=" * self._width)
                 break
             patient_count += 1
