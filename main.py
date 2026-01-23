@@ -6,7 +6,7 @@ from ansi import design
 
 class DiagnosticSession:
     """
-    Smple Forward-Chaining Diagnostic Session
+    Forward-Chaining Diagnostic Session
     Supports multiple patients in a single session.
     Converts user input to snake_case.
     Displays human-readable results.
